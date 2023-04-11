@@ -7,10 +7,11 @@ input:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:
 td:hover{border: 1px solid fuchsia;box-shadow: 5px 5px 20px darkorchid;}
 #tab1{border: 3px solid darkgoldenrod;}
 td{border: 1px solid indigo;}
-iframe {height: 100%;width: 100%;}
 input {height: 30px;border-radius: 15px}
+iframe {height: 100%;width: 100%;}
+div {height: calc(100vh - 50px);width: 100%;}
 #div0 {background:#ccc;}
-#div1 {background:#ebe;height: calc(100vh - 50px);width: 100%;}
+#div1 {background:#ebe;}
 #div1 input {background:#fec;}
 #div2 input {background:#aea;}
 #div3 input {background:#ff8;}
