@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="css1.css" />
     <link rel="icon" href="icons/佛4.ico" />
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="blog.webmanifest" />
 
     <script>
         window.onload = function () {
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <input id="addPWA" type="button" value="安裝成APP" title="iPhone請使用「加到主頁面」" />
+    <input id="addPWA" type="button" value="安裝成APP" title="iPhone請使用「加到主頁面」" disabled="disabled" />
     <input id="reload" type="button" value="重整頁面" onclick="javascript:window.location.reload()" />
 
     <div id="div1"><iframe id="blog1" src="https://virucana.blogspot.com/2023/02/blog-post.html" frameborder="0"></iframe></div>
@@ -32,16 +32,16 @@
                 navigator.serviceWorker.register('/sw_my.js')
                     .then(function (registration) {
                         console.log('ServiceWorker registration successful with scope:', registration.scope)
-                        alert('安裝成功')
+                        // alert('安裝成功')
                     }).catch(function (err) {
                         console.log('ServiceWorker registration failed:', err)
-                        alert('安裝失敗，請重新安裝')
+                        // alert('安裝失敗，請重新安裝')
                     })
             }
 
             window.addEventListener('beforeinstallprompt', function (e) {
                 e.preventDefault()
-                // btnSave.removeAttribute('disabled')
+                btnSave.removeAttribute('disabled')
                 savedPrompt = e
                 return false
             })
@@ -53,10 +53,10 @@
                     savedPrompt.userChoice.then(function (result) {
 
                         if (result.outcome == 'dismissed') {
-                            alert('使用者關閉主營幕')
+                            // alert('使用者關閉主營幕')
                             console.log('User dismissed homescreen install')
                         } else {
-                            alert('使用者加入主營幕')
+                            // alert('使用者加入主營幕')
                             console.log('User added to homescreen')
                         }
                         savedPrompt = null

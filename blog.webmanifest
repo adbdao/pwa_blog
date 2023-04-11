@@ -3,9 +3,8 @@
     "short_name": "佛誕月曆",
     "description": "從部落格連結的佛誕月曆",
     "lang": "zh-Hant-TW",
-    "version": "1.0.0",
+    "version": "2.0",
     "author": "DaoChung",
-    "scope": "/",
     "icons": [
         {
             "src": "icons/virucana192.png",
@@ -19,8 +18,7 @@
         }
     ],
     "display": "fullscreen",
-    "start_url": "/index.html",
-    "id": "/",
+    "start_url": ".",
     "theme_color": "#3367D6",
     "background_color": "#f0e68c"
 }
