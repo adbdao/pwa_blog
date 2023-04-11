@@ -36,7 +36,7 @@ var cacheFiles = [
     // "assets/test.jpg",
     {
       url: './index.html',
-      revision: '00000001' // 加revision，版本改了以後，sw.js 在 application 上會更新
+      revision: '00000003' // 加revision，版本改了以後，sw.js 在 application 上會更新
     }
   ];
   workbox.precaching.precacheAndRoute(cacheFiles);
