@@ -3,59 +3,85 @@
 <meta charset="utf-8">
 
 <head>
-    <title>從部落格連結的佛誕月曆</title>
+    <title>三德精舍APP</title>
     <base target="_blank">
 
     <link rel="stylesheet" href="css1.css" />
-    <link rel="icon" href="icons/佛4.ico" />
-    <!-- <link rel="manifest" href="blog.webmanifest" /> -->
+    <link rel="icon" href="icons/f48.png" />
 
     <link rel="canonical" href="https://adbdao.github.io/pwa_blog/" />
     <link rel="manifest" href="/pwa_blog/blog.webmanifest">
-
-    <script>
-        window.onload = function () {
-
-        }
-    </script>
+    <script src="nf.js"></script>
 </head>
 
 <body>
-    <input id="addPWA" type="button" value="安裝成APP" title="iPhone請使用「加到主頁面」" disabled="disabled" />
-    <input id="reload" type="button" value="重整頁面" onclick="javascript:window.location.reload()" />
+    <div id="divmula" class="mula">
+        <div id="div1" class="divShow">
 
-    <div id="div1"><iframe id="blog1" src="https://virucana.blogspot.com/2023/02/blog-post.html"
-            frameborder="0"></iframe></div>
-            <br/>
-            <hr/>
-            <br/>
-    <div id="div2"><iframe id="blog2" src="https://docs.google.com/document/d/e/2PACX-1vQbN4C8sQGbvds4tOakoX26dh3fHTDeyECa3D5mxuxBW0Pg4Aj0qtSdi_2tWZfTpLNieq7OE42S95PZ/pub"
-            frameborder="0"></iframe></div>
+            <table>
+                <tr>
+                    <td class="tdup"><button id="addPWA" disabled>安裝成APP<br />iPhone請使用「加到主頁面」</button>
+                    </td>
+                    <td class="tdup"><button id="reload" onclick="javascript:window.location.reload()">重整頁面</button>
+                    </td>
+                </tr>
+            </table>
+
+            <iframe id="blog1"
+                src="https://docs.google.com/document/d/e/2PACX-1vQbN4C8sQGbvds4tOakoX26dh3fHTDeyECa3D5mxuxBW0Pg4Aj0qtSdi_2tWZfTpLNieq7OE42S95PZ/pub"
+                frameborder="0"></iframe>
+        </div>
+
+        <div id="div2" class="divShow">
+            <div id="nfShow"></div>
+            <input id="nfNum1" class="nfNumClass" type="number" placeholder="今日念佛總數" />
+            <button id="btnSave1" class="nf">儲存</button>
+            <br /><button id="btnSearch1" class="nf">查詢記錄</button>
+        </div>
+
+        <div id="div3" class="divShow">
+            <div id="gkShow"></div>
+            <input id="gkNum2" class="gkNumClass" type="text" placeholder="功課名稱" />
+            <br /><input id="gkNum1" class="gkNumClass" type="number" placeholder="今日功課總數" />
+            <button id="btnSave2" class="nf gk">儲存</button>
+            <br /><button id="btnSearch2" class="nf gk">查詢記錄</button>
+        </div>
+
+        <div id="div4" class="divShow">
+            <div id="cleanShow"></div>
+            <br /><br /><button id="btnClean2" class="nf clean">清除佛號記錄</button>
+            <br /><br /><button id="btnClean3" class="nf clean">清除功課記錄</button>
+            <br /><br /><button id="btnClean1" class="nf clean">清除所有記錄</button>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <!-- <div id="btnmula" class="mula"> -->
+            <td class="tddown"><button id="btn1" class="btnshow">首頁</button></td>
+            <td class="tddown"><button id="btn2" class="btnshow">念佛<br />計數</button></td>
+            <td class="tddown"><button id="btn3" class="btnshow">功課<br />計數</button></td>
+            <td class="tddown"><button id="btn4" class="btnshow">關於我</button></td>
+            <!-- </div> -->
+        </tr>
+    </table>
 
     <script>
         window.addEventListener('load', function () {
             var btnSave = document.getElementById('addPWA')
             var savedPrompt
 
-            // if (navigator.serviceWorker) {
-            //     navigator.serviceWorker.register(
-            //         '/pwa_blog/sw.js',
-            //         { scope: '/pwa_blog/' }
-            //     )
-            // }
-
             if ('serviceWorker' in navigator) {
-                // navigator.serviceWorker.register('/sw_my.js')
                 navigator.serviceWorker.register(
                     '/pwa_blog/sw.js',
                     { scope: '/pwa_blog/' }
                 )
                     .then(function (registration) {
                         console.log('ServiceWorker registration successful with scope:', registration.scope)
-                        alert('安裝成功')
+                        // alert('安裝成功')
                     }).catch(function (err) {
                         console.log('ServiceWorker registration failed:', err)
-                        alert('安裝失敗，請重新安裝')
+                        // alert('安裝失敗，請重新安裝')
                     })
             }
 
@@ -63,7 +89,8 @@
                 e.preventDefault()
                 btnSave.removeAttribute('disabled')
                 savedPrompt = e
-                return false
+                return true
+                // return false
             })
 
             btnSave.addEventListener('click', function () {
@@ -73,10 +100,10 @@
                     savedPrompt.userChoice.then(function (result) {
 
                         if (result.outcome == 'dismissed') {
-                            alert('使用者關閉主營幕')
+                            // alert('使用者關閉主營幕')
                             console.log('User dismissed homescreen install')
                         } else {
-                            alert('使用者加入主營幕')
+                            // alert('使用者加入主營幕')
                             console.log('User added to homescreen')
                         }
                         savedPrompt = null

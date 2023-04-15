@@ -1,18 +1,23 @@
 {
     "name": "pwa_blog",
-    "short_name": "佛誕月曆",
-    "description": "從部落格連結的佛誕月曆",
+    "short_name": "三德精舍",
+    "description": "三德精舍APP",
     "lang": "zh-Hant-TW",
-    "version": "3.0",
+    "version": "1.0",
     "author": "DaoChung",
     "icons": [
         {
-            "src": "icons/virucana192.png",
+            "src": "icons/f48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/f192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/virucana512.png",
+            "src": "icons/f512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
@@ -20,6 +25,6 @@
     "display": "fullscreen",
     "scope": "/pwa_blog/",
     "start_url": "/pwa_blog/",
-    "theme_color": "#3367D6",
-    "background_color": "#f0e68c"
+    "theme_color": "#d8bfd8",
+    "background_color": "#ffb6c1"
 }

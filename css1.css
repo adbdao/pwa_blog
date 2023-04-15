@@ -1,47 +1,48 @@
 /* *{border-radius: 8px;padding: 3px;} */
 /*html{background: black;color:gray;}*/
+/* 反白選取 */
 ::selection{background: darkred;color:yellow;}
 ::-moz-selection{background: darkred;color:yellow;}
-input:hover,textarea:hover{border: 2px solid fuchsia;box-shadow: 5px 5px 20px darkorchid;}
-input:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: 5px -5px 20px darkorchid;}
-td:hover{border: 1px solid fuchsia;box-shadow: 5px 5px 20px darkorchid;}
-#tab1{border: 3px solid darkgoldenrod;}
-td{border: 1px solid indigo;}
-input {height: 30px;border-radius: 15px}
-iframe {height: 100%;width: 100%;}
-div {height: calc(100vh - 50px);width: 100%;}
-#div0 {background:#ccc;}
-#div1 {background:#ebe;}
-#div1 input {background:#fec;}
-#div2 input {background:#aea;}
-#div3 input {background:#ff8;}
-#div4 input {background:#f99;}
-.name {background:tan;color: rgb(138, 119, 123);}
 
-#txt1{width: 80vw;height: 30vh;}
-#ch1911,#ch1911x,.g {font-weight: bold;color: gold;}
-#myValue {width: 80vw;font-weight: bold;color: #aca;}
-#myValue2 {width: 80vw;font-weight: bold;color: snow;}
-#reValue,.t {font-weight: bold;color: tomato;}
-#reUp,.r {font-weight: bold;color: red;}
-.sb {font-weight: bold;color: skyblue;}
-.cy {font-weight: bold;color: cyan;}
-.ky {font-weight: bold;background: khaki;}
-.pink {font-weight: bold;color: pink;}
-.y {font-weight: bold;background: yellow;}
-.o {font-weight: bold;color: darkorange;}
-.yg {font-weight: bold;color: green;}
-.dc {font-weight: bold;color: darkcyan;}
-.dg {font-weight: bold;color: salmon;}
-.b {font-weight: bold;color: blue;}
-.p {font-weight: bold;color: slateblue;}
-.m {font-weight: bold;color: magenta;font-size: 110%;}
-.dv {font-weight: bold;color: darkviolet;}
-.lg {font-weight: bold;color: limegreen;}
-.lsg {font-weight: bold;color: lightseagreen;}
+body {background: -webkit-linear-gradient(right, peru 0.00%, gold 90.00%);background: linear-gradient(right, peru 0.00%, gold 90.00%);}
 
-#nbr {font-weight: bold;color: lightcyan}
-#btng2 {font-weight: bold;color: gold}
-#btng4,.gy {font-weight: bold;background: greenyellow}
-#btng5,.tan {font-weight: bold;color: tan}
-#reload {height: 30px;font-weight: bold;color: yellowgreen}
+table{height: 100%;width: 100%;border: 0;text-align: center;}
+
+/* 全部按鈕 */
+button {border-radius: 15px;border:0; background: -webkit-linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%); background: linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);box-shadow: 4px 3px 4px silver,8px 7px 7px gray;}
+button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: -5px -5px 20px darkorchid;}
+/* 上邊全部按鈕 */
+.tdup{height: 10vh;width: 50vw;}
+/* 各別按鈕 */
+#addPWA{height: 90%;color: blue; font-size: 0.8em; text-align: justify;}
+#reload{height:90%;color: green; font-size: 1em;  text-align: justify;}
+/* 下邊全部按鈕 */
+.tddown{height: 20vh;width: 25vw;}
+.btnshow{height: 90%;width: 90%; color: brown; font-size: 1.5em; }
+
+
+/* .btnmula{height: 20vh;width: 100%;}
+.divmula{height: 80vh;width: 100%;} */
+
+iframe {height: 60vh;width: 100%;}
+/* 全部頁面 */
+.divShow{display: none;}
+/* 各別頁面 */
+/* #div0 {background:#ccc;background:#fec;} */
+#div1 {display: block;}
+
+#div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;}
+#nfShow,#gkShow{height: 50%;width: 100%;padding: 10vh 0 0 0 ; font-size: 2em;color: blue;overflow: auto;}
+.nfNumClass{font-size: 2em;color: green;width: 50vw;}
+.nf{font-size: 2em;color: indigo;}
+
+#div3 {background:#aea;height: 70vh;width: 100%;text-align: center;}
+/* #div3 {background:#ff8;} */
+.gkNumClass{font-size: 2em;color: purple;width: 50vw;}
+#gkNum2{width: 30vw;}
+.gk{color: green;}
+
+/* #div4 {background:#f99} */
+#div4 {background:tan;height: 70vh;width: 100%;text-align: center;}
+.clean{color: black;}
+#cleanShow{height: 10%;width: 100%;padding: 10vh 0 0 0 ; font-size: 2em;color: darkslategray;overflow: auto;}
