@@ -24,7 +24,7 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 /* .btnmula{height: 20vh;width: 100%;}
 .divmula{height: 80vh;width: 100%;} */
 
-iframe {height: 60vh;width: 100%;}
+iframe {height: 60vh;width: 100%;overflow: auto;}
 /* 全部頁面 */
 .divShow{display: none;}
 /* 各別頁面 */
