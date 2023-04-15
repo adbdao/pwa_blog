@@ -6,12 +6,209 @@
     <title>三德精舍APP</title>
     <base target="_blank">
 
-    <link rel="stylesheet" href="css1.css" />
+    <!-- <link rel="stylesheet" href="css1.css" /> -->
     <link rel="icon" href="icons/f48.png" />
 
     <link rel="canonical" href="https://adbdao.github.io/pwa_blog/" />
     <link rel="manifest" href="/pwa_blog/blog.webmanifest">
-    <script src="nf.js"></script>
+    <!-- <script src="nf.js"></script> -->
+    <style>
+        /* *{border-radius: 8px;padding: 3px;} */
+/*html{background: black;color:gray;}*/
+/* 反白選取 */
+::selection{background: darkred;color:yellow;}
+::-moz-selection{background: darkred;color:yellow;}
+
+body {background: -webkit-linear-gradient(right, peru 0.00%, gold 90.00%);background: linear-gradient(right, peru 0.00%, gold 90.00%);}
+
+table{height: 100%;width: 100%;border: 0;text-align: center;}
+
+/* 全部按鈕 */
+button {border-radius: 15px;border:0; background: -webkit-linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%); background: linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);box-shadow: 4px 3px 4px silver,8px 7px 7px gray;}
+button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: -5px -5px 20px darkorchid;}
+/* 上邊全部按鈕 */
+.tdup{height: 10vh;width: 50vw;}
+/* 各別按鈕 */
+#addPWA{height: 90%;color: blue; font-size: 0.8em; text-align: justify;}
+#reload{height:90%;color: green; font-size: 1em;  text-align: justify;}
+/* 下邊全部按鈕 */
+.tddown{height: 20vh;width: 25vw;}
+.btnshow{height: 90%;width: 90%; color: brown; font-size: 1.5em; }
+
+
+/* .btnmula{height: 20vh;width: 100%;}
+.divmula{height: 80vh;width: 100%;} */
+
+iframe {height: 60vh;width: 100%;overflow: auto;}
+/* 全部頁面 */
+.divShow{display: none;}
+/* 各別頁面 */
+/* #div0 {background:#ccc;background:#fec;} */
+#div1 {display: block;}
+
+#div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;}
+#nfShow,#gkShow{height: 50%;width: 100%;padding: 10vh 0 0 0 ; font-size: 2em;color: blue;overflow: auto;}
+.nfNumClass{font-size: 2em;color: green;width: 50vw;}
+.nf{font-size: 2em;color: indigo;}
+
+#div3 {background:#aea;height: 70vh;width: 100%;text-align: center;}
+/* #div3 {background:#ff8;} */
+.gkNumClass{font-size: 2em;color: purple;width: 50vw;}
+#gkNum2{width: 30vw;}
+.gk{color: green;}
+
+/* #div4 {background:#f99} */
+#div4 {background:tan;height: 70vh;width: 100%;text-align: center;}
+.clean{color: black;}
+#cleanShow{height: 10%;width: 100%;padding: 10vh 0 0 0 ; font-size: 2em;color: darkslategray;overflow: auto;}
+
+    </style>
+<script>
+    window.onload = function () {
+    // 循環顯示div
+    function showdiv(divID) {
+        var divNone = document.getElementsByClassName('divShow')
+        for (var i = 0; i < divNone.length; i++) {
+            divNone[i].style.display = 'none'
+        }
+        divID.style.display = 'block'
+    }
+    // 循環顯示div，套用在按鈕上
+    btn1.onclick = () => { showdiv(div1) }
+    btn2.onclick = () => { showdiv(div2) }
+    btn3.onclick = () => { showdiv(div3) }
+    btn4.onclick = () => { showdiv(div4) }
+
+    // 今日日期、時間
+    function addDate() {
+        var oDate = new Date()
+        var htr = oDate.getHours() + ':' + oDate.getMinutes() + ':' + oDate.getSeconds()
+        var dtr = oDate.getFullYear() + '-' + (oDate.getMonth() + 1) + '-' + oDate.getDate()
+        return dtr + '~' + htr
+    }
+
+    // 查詢「瀏覽器本地存儲」中的內容，編號到幾號，返回下一個新編號
+    function localNum(name) {
+        for (var j = 1; j < 99999; j++) {
+            if (!localStorage[name + j]) {
+                // 不能用break，會中斷函數
+                // break
+                return j
+            }
+        }
+    }
+    // 輸入的佛號數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
+    nfShow.innerHTML = ''
+    btnSave1.onclick = () => {
+        var nf1 = nfNum1.value
+        if (!nf1) {
+            alert('請輸入數目')
+        } else {
+            localStorage['nf' + localNum('nf')] = addDate() + ' 念佛' + nf1 + '聲'
+            nfShow.innerHTML += addDate() + ' 念佛' + nf1 + '聲<br>'
+            nfNum1.value = null
+        }
+    }
+    // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回陣列
+    var DataAll = []
+    function localDataAll(name) {
+        for (var j = 1; j < 99999; j++) {
+            if (localStorage[name + j]) {
+                DataAll.push(localStorage[name + j])
+            } else {
+                // 這裡可以加break，會快很多
+                break
+            }
+        }
+    }
+    // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回
+    btnSearch1.onclick = () => {
+        // 查詢內容
+        localDataAll('nf')
+        // 顯示
+        // nfShow.innerHTML = DataAll.join('<br>')
+        alert(DataAll.join('\n'))
+        // 清除使用過的陣列
+        DataAll.length = 0
+    }
+
+    // 輸入功課數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
+    gkShow.innerHTML = ''
+    btnSave2.onclick = () => {
+        var gk1 = gkNum1.value
+        var gk2 = gkNum2.value
+        // 檢查是否有輸入資料
+        if (!gk1 || !gk2) {
+            alert('請輸入"功課名稱"與"數目"')
+        } else {
+            localStorage['gk' + localNum('gk')] = addDate() + ' ' + gk2 + gk1 + '遍'
+            gkShow.innerHTML += addDate() + ' ' + gk2 + gk1 + '遍<br>'
+            gkNum1.value = null
+        }
+        // 儲存功課名稱
+        if (!localStorage['gkHead'] || localStorage['gkHead'] != gk2) {
+            localStorage['gkHead'] = gk2
+        }
+    }
+    // 儲存功課名稱，並先顯示在文本框
+    if (localStorage['gkHead']) {
+        gkNum2.value = localStorage['gkHead']
+    }
+
+    // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回
+    btnSearch2.onclick = () => {
+        // 查詢內容
+        localDataAll('gk')
+        // 顯示
+        // gkShow.innerHTML = DataAll.join('<br>')
+        alert(DataAll.join('\n'))
+        // 清除使用過的陣列
+        DataAll.length = 0
+    }
+
+    // 刪除所有記錄
+    btnClean1.onclick = () => {
+        if (confirm('確定要刪除所有記錄？')) {
+            localStorage.clear()
+            // 無法檢查是否完成，直接回報而已
+            alert('刪除完畢')
+        }
+    }
+    // 刪除各項記錄
+    function DellocalDataAll(name) {
+        for (var j = 1; j < 99999; j++) {
+            if (localStorage[name + j]) {
+                delete localStorage[name + j]
+            } else {
+                // 這裡可以加break，會快很多
+                break
+            }
+        }
+    }
+    // 刪除所有念佛記錄
+    btnClean2.onclick = () => {
+        // 詢問使用者
+        if (confirm('確定要刪除所有念佛記錄？')) {
+            DellocalDataAll('nf')
+            // 檢查是否完成
+            if (localNum('nf') == 1) {
+                alert('刪除完畢')
+            }
+        }
+    }
+    // 刪除所有功課記錄
+    btnClean3.onclick = () => {
+        // 詢問使用者
+        if (confirm('確定要刪除所有功課記錄？')) {
+            DellocalDataAll('gk')
+            // 檢查是否完成
+            if (localNum('gk') == 1) {
+                alert('刪除完畢')
+            }
+        }
+    }
+}
+</script>
 </head>
 
 <body>
