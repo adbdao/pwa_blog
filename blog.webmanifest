@@ -3,21 +3,21 @@
     "short_name": "三德精舍",
     "description": "三德精舍APP",
     "lang": "zh-Hant-TW",
-    "version": "1.0",
+    "version": "5.0",
     "author": "DaoChung",
     "icons": [
         {
-            "src": "icons/f48.png",
+            "src": "icons/sd48.png",
             "sizes": "48x48",
             "type": "image/png"
         },
         {
-            "src": "icons/f192.png",
+            "src": "icons/sd192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/f512.png",
+            "src": "icons/sd512.png",
             "sizes": "512x512",
             "type": "image/png"
         }

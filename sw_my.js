@@ -43,20 +43,29 @@
 // })
 // ========================
 
-const cacheName = 'helloWorld';
+const cacheName = 'nfPWA';
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(cacheName)
       .then(cache => cache.addAll([
-        'https://virucana.blogspot.com/2023/02/blog-post.html',
         'index.html',
         'css1.css',
-        'sw_my.js',
-        'manifest.json',
-        'icons/佛4.png',
-        'icons/virucana192.png',
-        'icons/virucana512.png'
+        'nf.js',
+        'sw.js',
+        'blog.webmanifest',
+        'icons/sd48.png',
+        'icons/sd192.png',
+        'icons/sd512.png',
+        // 不知道Github路徑，只好全部加入
+        '/pwa_blog/index.html',
+        '/pwa_blog/css1.css',
+        '/pwa_blog/nf.js',
+        '/pwa_blog/sw.js',
+        '/pwa_blog/blog.webmanifest',
+        '/pwa_blog/icons/sd48.png',
+        '/pwa_blog/icons/sd192.png',
+        '/pwa_blog/icons/sd512.png'
       ]))
   )
 })
