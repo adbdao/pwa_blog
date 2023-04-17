@@ -54,7 +54,7 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 .nf{font-size: 24pt;color: indigo;}
 
 #div3 {background:#aea;height: 70vh;width: 100%;text-align: center;}
-.gkNumClass{font-size: 24pt;color: purple;width: 50vw;}
+.gkNumClass{font-size: 24pt;color: rgb(194, 172, 194);width: 50vw;}
 #gkNum2{width: 30vw;}
 .gk{color: green;}
 
@@ -101,15 +101,15 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 .divmula{height: 80vh;width: 100%;} */
 
 /* 新聞頁加長 */
-#blog2 {height: 75vh;}
+/* #blog2 {height: 75vh;} */
 /* 全部頁面 */
-/* .divShow{display: none;} */
+.divShow{height: 80vh;}
 /* 各別頁面 */
 /* #div0 {background:#ccc;background:#fec;} */
 /* #div1 {display: block;} */
 
 /* #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;} */
-#nfShow,#gkShow{height: 60%;font-size: 48pt;}
+#nfShow,#gkShow{height: 60%;font-size: 36pt;}
 .nfNumClass{font-size: 48pt;}
 .nf{font-size: 48pt;}
 
@@ -399,8 +399,8 @@ window.onload = function () {
         </div>
 
         <div id="div3" class="divShow">
-            <div id="gkShow"></div>
             <input id="gkNum2" class="gkNumClass" type="text" placeholder="功課名稱" />
+            <div id="gkShow"></div>
             <br /><input id="gkNum1" class="gkNumClass" type="number" placeholder="今日功課總數" />
             <button id="btnSave2" class="nf gk">儲存</button>
             <br /><button id="btnSearch2" class="nf gk">查詢記錄</button> <button id="btnSum2" class="nf gk">總計</button>
