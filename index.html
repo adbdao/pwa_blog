@@ -84,12 +84,11 @@ font{color: crimson;}
 
 /* table{height: 100%;width: 100%;border: 0;text-align: center;} */
 
-/* 全部頁面 */
-.divShow{height: 80vh;}
 /* 全部按鈕 */
 button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 /* button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: -5px -5px 20px darkorchid;} */
 /* 上邊全部按鈕 */
+#first{height: 8vh;}
 .tdup{height: 7vh;}
 /* 各別按鈕 */
 #addPWA{ font-size: 24pt;}
@@ -103,14 +102,19 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 .divmula{height: 80vh;width: 100%;} */
 
 /* 新聞頁加長 */
+#div1 {height: 70vh;}
+/* #blog1 {background: red;} */
 /* #blog2 {height: 75vh;} */
 
+/* 全部頁面 */
+.divShow{height: 80vh;}
 /* 各別頁面 */
 /* #div0 {background:#ccc;background:#fec;} */
 /* #div1 {display: block;} */
 
 /* #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;} */
-#nfShow,#gkShow{height: 60%;font-size: 32pt;}
+#nfShow{height: 75%;font-size: 32pt;}
+#gkShow{height: 70%;font-size: 32pt;}
 .nfNumClass{font-size: 48pt;}
 .nf{font-size: 48pt;}
 
@@ -497,10 +501,10 @@ window.addEventListener('load', function () {
     )
       .then(function (registration) {
         console.log('ServiceWorker registration successful with scope:', registration.scope)
-        alert('安裝成功')
+        // alert('安裝成功')
       }).catch(function (err) {
         console.log('ServiceWorker registration failed:', err)
-        alert('安裝失敗，請重新安裝')
+        // alert('安裝失敗，請重新安裝')
       })
   }
   // 安裝按鈕
