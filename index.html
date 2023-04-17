@@ -84,11 +84,13 @@ font{color: crimson;}
 
 /* table{height: 100%;width: 100%;border: 0;text-align: center;} */
 
+/* 全部頁面 */
+.divShow{height: 80vh;}
 /* 全部按鈕 */
 button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 /* button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: -5px -5px 20px darkorchid;} */
 /* 上邊全部按鈕 */
-.tdup{height: 8vh;}
+.tdup{height: 7vh;}
 /* 各別按鈕 */
 #addPWA{ font-size: 24pt;}
 #reload{ font-size: 36pt;}
@@ -102,14 +104,13 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 
 /* 新聞頁加長 */
 /* #blog2 {height: 75vh;} */
-/* 全部頁面 */
-.divShow{height: 80vh;}
+
 /* 各別頁面 */
 /* #div0 {background:#ccc;background:#fec;} */
 /* #div1 {display: block;} */
 
 /* #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;} */
-#nfShow,#gkShow{height: 60%;font-size: 36pt;}
+#nfShow,#gkShow{height: 60%;font-size: 32pt;}
 .nfNumClass{font-size: 48pt;}
 .nf{font-size: 48pt;}
 
@@ -374,7 +375,7 @@ window.onload = function () {
     <div id="divmula" class="mula">
         <div id="div1" class="divShow">
 
-            <table>
+            <table id="first">
                 <tr>
                     <td class="tdup"><button id="addPWA" disabled>安裝成APP<br />iPhone請使用「加到主頁面」</button>
                     </td>
