@@ -32,14 +32,16 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 #addPWA{height: 90%;color: blue; font-size: 12pt; text-align: justify;}
 #reload{height:90%;color: green; font-size: 18pt;  text-align: justify;}
 /* 下邊全部按鈕 */
-.tddown{height: 20vh;width: 25vw;}
+.tddown{height: 20vh;width: 20vw;}
 .btnshow{height: 90%;width: 90%; color: brown; font-size: 20pt; }
 
 
 /* .btnmula{height: 20vh;width: 100%;}
 .divmula{height: 80vh;width: 100%;} */
 
-iframe {height: 60vh;width: 100%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;}
+#blog1 {height: 60vh;width: 100%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;}
+#div5 {height: 70vh;width: 100%;background:#ff8;}
+#blog2 {height: 100%;width: 100%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;}
 /* 全部頁面 */
 .divShow{display: none;}
 /* 各別頁面 */
@@ -47,12 +49,11 @@ iframe {height: 60vh;width: 100%;overflow: auto;background-image: url(icons/sd51
 #div1 {display: block;}
 
 #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;}
-#nfShow,#gkShow{height: 50%;width: 100%;padding: 10vh 0 0 0 ; font-size: 24pt;color: blue;overflow: auto;}
+#nfShow,#gkShow{height: 50%;width: 100%;padding: 2vh 0 0 0 ; font-size: 24pt;color: blue;overflow: auto;}
 .nfNumClass{font-size: 24pt;color: green;width: 50vw;}
 .nf{font-size: 24pt;color: indigo;}
 
 #div3 {background:#aea;height: 70vh;width: 100%;text-align: center;}
-/* #div3 {background:#ff8;} */
 .gkNumClass{font-size: 24pt;color: purple;width: 50vw;}
 #gkNum2{width: 30vw;}
 .gk{color: green;}
@@ -99,7 +100,8 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 /* .btnmula{height: 20vh;width: 100%;}
 .divmula{height: 80vh;width: 100%;} */
 
-iframe {height: 75vh;}
+/* 新聞頁加長 */
+#blog2 {height: 75vh;}
 /* 全部頁面 */
 /* .divShow{display: none;} */
 /* 各別頁面 */
@@ -139,6 +141,7 @@ window.onload = function () {
     btn2.onclick = () => { showdiv(div2) }
     btn3.onclick = () => { showdiv(div3) }
     btn4.onclick = () => { showdiv(div4) }
+    btn5.onclick = () => { showdiv(div5) }
     // 顯示「刪除所有記錄」按鈕，套用在按鈕上
     btnClean0.onclick = () => {
         var buttonNone = document.getElementsByClassName('clean')
@@ -149,6 +152,7 @@ window.onload = function () {
         //     buttonNone[i].style.display = 'none'
         // }
         // }
+        // 後來整合成一個表格，所以一次就夠了
         if (buttonNone[0].style.display == 'none') {
             buttonNone[0].style.display = 'block'
         } else {
@@ -174,13 +178,18 @@ window.onload = function () {
             }
         }
     }
+    // 查詢「瀏覽器本地存儲」中的內容，編號到幾號，返回編號總數
+    function localNumTime(name) {
+        var DataSumTime = Number(localNum(name)) - 1
+        return '總共輸入' + DataSumTime + '次，'
+    }
     // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回陣列
     var DataAll = []
     function localDataAll(name) {
         for (var j = 1; j < 99999; j++) {
             if (localStorage[name + j]) {
                 // 加上樣式，區分日期、人名
-                DataAll.push(localStorage[name + j].replace(/([^~]+)(~[^ ]+ )(.+)/,'<span>$1</span>$2<font>$3</font>'))
+                DataAll.push(localStorage[name + j].replace(/([^~]+)(~[^ ]+ )(.+)/, '<span>$1</span>$2<font>$3</font>' + logo))
             } else {
                 // 這裡可以加break，會快很多
                 break
@@ -188,18 +197,20 @@ window.onload = function () {
         }
     }
     // 查詢「瀏覽器本地存儲」中的內容，統計總數，並返回數字
-    function localDataSum(name) {
-        var DataSum = 0
+    function localDataSum(name, ones) {
+        var DataSum = 0, DataTime = 0
         for (var j = 1; j < 99999; j++) {
             if (localStorage[name + j]) {
                 // 加上樣式，區分日期、人名
                 DataSum += Number(localStorage[name + j].replace(/[^ ]+ \D+(\d+)\D+/, '$1'))
             } else {
+                // 總計筆數
+                DataTime = j - 1
                 // 這裡可以加break，會快很多
                 break
             }
         }
-        return DataSum
+        return '總共輸入' + DataTime + '次，總計' + DataSum + ones + logo
     }
     function Copy() {
         // 結束時選取並複製文本框中的內容
@@ -207,6 +218,7 @@ window.onload = function () {
         document.execCommand('Copy')
         alert('已複製你查詢的內容，可以直接到別的APP中「貼上」')
     }
+    var logo = '<span>/三德精舍(埤頭)</span>'
 
     // 輸入的佛號數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
     // 記錄頁面有無東西
@@ -217,17 +229,17 @@ window.onload = function () {
         if (!nf1) {
             alert('請輸入數目')
         } else {
-            if (confirm('確定儲存？')){
-            localStorage['nf' + localNum('nf')] = addDate() + ' 念佛' + nf1 + '聲'
-            // 頁面有查詢內容，就歸零
-            if (s1 == 1) {
-                nfShow.innerHTML = ''
-                s1 = 0
+            if (confirm('確定儲存？')) {
+                localStorage['nf' + localNum('nf')] = addDate() + ' 念佛' + nf1 + '聲'
+                // 頁面有查詢內容，就歸零
+                if (s1 == 1) {
+                    nfShow.innerHTML = ''
+                    s1 = 0
+                }
+                nfShow.innerHTML += addDate() + ' <font>念佛' + nf1 + '聲</font>' + logo + '<br>'
+                // 清空輸入的資料，才不會重複儲存
+                nfNum1.value = null
             }
-            nfShow.innerHTML += addDate() + ' <font>念佛' + nf1 + '聲</font><br>'
-            // 清空輸入的資料，才不會重複儲存
-            nfNum1.value = null
-        }
         }
     }
     // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回
@@ -245,7 +257,7 @@ window.onload = function () {
     // 查詢「瀏覽器本地存儲」中的內容，統計總數，並返回數字
     btnSum1.onclick = () => {
         // 查詢內容+顯示
-        nfShow.innerHTML = '總計' + localDataSum('nf') + '聲'
+        nfShow.innerHTML = localDataSum('nf', '句佛號')
         // 記錄頁面已有資料
         s1 = 1
     }
@@ -264,17 +276,17 @@ window.onload = function () {
         if (!gk1 || !gk2) {
             alert('請輸入"功課名稱"與"數目"')
         } else {
-            if (confirm('確定儲存？')){
-            localStorage['gk' + localNum('gk')] = addDate() + ' ' + gk2 + gk1 + '遍'
-            // 頁面有查詢內容，就歸零
-            if (s2 == 1) {
-                gkShow.innerHTML = ''
-                s2 = 0
+            if (confirm('確定儲存？')) {
+                localStorage['gk' + localNum('gk')] = addDate() + ' ' + gk2 + gk1 + '遍'
+                // 頁面有查詢內容，就歸零
+                if (s2 == 1) {
+                    gkShow.innerHTML = ''
+                    s2 = 0
+                }
+                gkShow.innerHTML += addDate() + ' <font>' + gk2 + gk1 + '遍</font>' + logo + '<br>'
+                // 清空輸入的資料，才不會重複儲存
+                gkNum1.value = null
             }
-            gkShow.innerHTML += addDate() + ' <font>' + gk2 + gk1 + '遍</font><br>'
-            // 清空輸入的資料，才不會重複儲存
-            gkNum1.value = null
-        }
         }
         // 儲存功課名稱
         if (!localStorage['gkHead'] || localStorage['gkHead'] != gk2) {
@@ -300,7 +312,7 @@ window.onload = function () {
     // 查詢「瀏覽器本地存儲」中的內容，統計總數，並返回數字
     btnSum2.onclick = () => {
         // 查詢內容+顯示
-        gkShow.innerHTML = '總計' + localDataSum('gk') + '遍'
+        gkShow.innerHTML = localDataSum('gk', '遍')
         // 記錄頁面已有資料
         s2 = 1
     }
@@ -373,6 +385,10 @@ window.onload = function () {
 
             <iframe id="blog1" frameborder="0"></iframe>
         </div>
+        
+        <div id="div5" class="divShow">
+            <iframe id="blog2" frameborder="0"></iframe>
+        </div>
 
         <div id="div2" class="divShow">
             <div id="nfShow"></div>
@@ -404,23 +420,47 @@ window.onload = function () {
                 <table id="me">
                     <tr>
                         <td>帳號</td>
-                        <td><ul>
+                        <td>
+                            <ul>
                             <li>戶名：社團法人彰化縣三德精舍念佛會</li>
                             <li>劃撥：郵政劃撥帳號 22855554</li>
                             <li>銀行：(053)台中銀行 埤頭分行 079-22-0096762</li>
-                            </ul></td>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
                         <td>組織資訊</td>
-                        <td><ul>
+                        <td>
+                            <ul>
                             <li>法人登記：109證社字第26號登記簿第10冊第185頁第825號</li>
                             <li>立案證書：府社發展字第109077號</li>
                             <li>統一編號：87165393</li>
                             <li>E-mail信箱：tw048911311@gmail.com</li>
                             <li>電話：04-8924737(常用)  04-8911311(社團專線)</li>
                             <li>共修地址：彰化縣埤頭鄉芙朝村庄後路144號(民宅)</li>
-                            <li>基地地址：彰化縣埤頭鄉新庄村新庄路418號(後面是基地)</li>
-                            </ul></td>
+                            <li>新建精舍基地地址：彰化縣埤頭鄉新庄村新庄路418號(後面是基地)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>社群媒體</td>
+                        <td>
+                            <ul>
+                            <li><a href="https://www.facebook.com/groups/tw048911311" target="_blank">精舍FACEBOOK社團</a></li>
+                            <li><a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">精舍LINE公告群</a></li>
+                            <li><a href="https://www.youtube.com/@bsdv" target="_blank">精舍YOUTUBE</a></li>
+                            <li><a href="https://www.youtube.com/@bsdv-1" target="_blank">精舍YOUTUBE-1</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>比丘</td>
+                        <td>
+                            <ul>
+                            <li>共同創建比丘：釋常誠、釋本傑、釋本知</li>
+                            <li>道場主：釋常誠</li>
+                            </ul>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -431,6 +471,7 @@ window.onload = function () {
         <tr>
             <!-- <div id="btnmula" class="mula"> -->
             <td class="tddown"><button id="btn1" class="btnshow">首頁</button></td>
+            <td class="tddown"><button id="btn5" class="btnshow">最新<br />消息</button></td>
             <td class="tddown"><button id="btn2" class="btnshow">念佛<br />計數</button></td>
             <td class="tddown"><button id="btn3" class="btnshow">功課<br />計數</button></td>
             <td class="tddown"><button id="btn4" class="btnshow">關於我</button></td>
@@ -443,52 +484,110 @@ window.onload = function () {
     <textarea id="txt1" "></textarea>
 
     <script>
-        window.addEventListener('load', function () {
-            var btnSave = document.getElementById('addPWA')
-            var savedPrompt
-            // 註冊serviceWorker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register(
-                    // Github路徑
-                    '/pwa_blog/sw.js',
-                    { scope: '/pwa_blog/' }
-                )
-                    .then(function (registration) {
-                        console.log('ServiceWorker registration successful with scope:', registration.scope)
-                        // alert('安裝成功')
-                    }).catch(function (err) {
-                        console.log('ServiceWorker registration failed:', err)
-                        // alert('安裝失敗，請重新安裝')
-                    })
+window.addEventListener('load', function () {
+  var btnSave = document.getElementById('addPWA')
+  var savedPrompt
+  // 註冊serviceWorker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register(
+      // Github路徑
+      '/pwa_blog/sw.js',
+      { scope: '/pwa_blog/' }
+    )
+      .then(function (registration) {
+        console.log('ServiceWorker registration successful with scope:', registration.scope)
+        alert('安裝成功')
+      }).catch(function (err) {
+        console.log('ServiceWorker registration failed:', err)
+        alert('安裝失敗，請重新安裝')
+      })
+  }
+  // 安裝按鈕
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault()
+    btnSave.removeAttribute('disabled')
+    savedPrompt = e
+    // 我設定true
+    return true
+    // return false
+  })
+  // 安裝按鈕
+  btnSave.addEventListener('click', function () {
+    if (savedPrompt !== undefined) {
+      savedPrompt.prompt()
+
+      savedPrompt.userChoice.then(function (result) {
+
+        if (result.outcome == 'dismissed') {
+          // alert('使用者關閉主營幕')
+          console.log('User dismissed homescreen install')
+        } else {
+          // alert('使用者加入主營幕')
+          console.log('User added to homescreen')
+        }
+        savedPrompt = null
+      })
+    }
+  })
+})
+
+
+const cacheName = 'nfPWA';
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(cacheName)
+      .then(cache => cache.addAll([
+    //   只要有一個載入失敗，就全部失敗，所以盡量少
+        '/pwa_blog/index.html',
+        // 'css1.css',
+        // 'nf.js',
+        // 'sw.js',
+        // 'blog.webmanifest',
+        // 'icons/sd48.png',
+        // 'icons/sd192.png',
+        '/pwa_blog/icons/sd512.png'
+        // 不知道Github路徑，只好全部加入
+        // '/pwa_blog/index.html',
+        // '/pwa_blog/css1.css',
+        // '/pwa_blog/nf.js',
+        // '/pwa_blog/sw.js',
+        // '/pwa_blog/blog.webmanifest',
+        // '/pwa_blog/icons/sd48.png',
+        // '/pwa_blog/icons/sd192.png',
+        // '/pwa_blog/icons/sd512.png'
+      ]))
+  )
+})
+
+self.addEventListener('fetch', function (event) {
+  event.respondWith(
+    caches.match(event.request, { ignoreSearch: true })
+      .then(function (response) {
+        if (response) {
+          return response
+        }
+
+        var requestToCache = event.request.clone()
+
+        return fetch(requestToCache).then(
+          function (response) {
+            if (!response || response.status !== 200) {
+              return response
             }
-            // 安裝按鈕
-            window.addEventListener('beforeinstallprompt', function (e) {
-                e.preventDefault()
-                btnSave.removeAttribute('disabled')
-                savedPrompt = e
-                // 我設定true
-                return true
-                // return false
-            })
-            // 安裝按鈕
-            btnSave.addEventListener('click', function () {
-                if (savedPrompt !== undefined) {
-                    savedPrompt.prompt()
 
-                    savedPrompt.userChoice.then(function (result) {
+            var requestToCache = response.clone()
 
-                        if (result.outcome == 'dismissed') {
-                            // alert('使用者關閉主營幕')
-                            console.log('User dismissed homescreen install')
-                        } else {
-                            // alert('使用者加入主營幕')
-                            console.log('User added to homescreen')
-                        }
-                        savedPrompt = null
-                    })
-                }
-            })
-        })
+            cache.open(cacheName)
+              .then(function (cache) {
+                cache.put(requestToCache, requestToCache)
+              })
+            return response
+          }
+        )
+      })
+  )
+});
     </script>
 </body>
 

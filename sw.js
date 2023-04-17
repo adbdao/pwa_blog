@@ -5,7 +5,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 // 存任何的.js
 workbox.routing.registerRoute(
   new RegExp('*\.js'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'js-cache'
   })
 );
@@ -13,7 +13,7 @@ workbox.routing.registerRoute(
 // 存任何的html
 workbox.routing.registerRoute(
   new RegExp('*\.html'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'html-cache'
   })
 );
@@ -21,7 +21,7 @@ workbox.routing.registerRoute(
 // 存任何的css
 workbox.routing.registerRoute(
   new RegExp('*\.css'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'css-cache'
   })
 );
@@ -29,7 +29,7 @@ workbox.routing.registerRoute(
 // 存任何的images
 workbox.routing.registerRoute(
   new RegExp('icons/*\.(?:png|jpg|jpeg|svg|gif)'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'image-cache'
   })
 );
@@ -37,7 +37,7 @@ workbox.routing.registerRoute(
 // 存任何的.js
 workbox.routing.registerRoute(
   new RegExp('/pwa_blog/*\.js'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'js-cache-github'
   })
 );
@@ -45,7 +45,7 @@ workbox.routing.registerRoute(
 // 存任何的html
 workbox.routing.registerRoute(
   new RegExp('/pwa_blog/*\.html'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'html-cache-github'
   })
 );
@@ -53,7 +53,7 @@ workbox.routing.registerRoute(
 // 存任何的css
 workbox.routing.registerRoute(
   new RegExp('/pwa_blog/*\.css'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'css-cache-github'
   })
 );
@@ -61,7 +61,7 @@ workbox.routing.registerRoute(
 // 存任何的images
 workbox.routing.registerRoute(
   new RegExp('/pwa_blog/icons/*\.(?:png|jpg|jpeg|svg|gif)'),
-  workbox.strategies.CacheOnly({
+  workbox.strategies.cacheFirst({
     cacheName: 'image-cache-github'
   })
 );
