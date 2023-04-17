@@ -25,6 +25,7 @@
     "display": "fullscreen",
     "scope": "/pwa_blog/",
     "start_url": "/pwa_blog/",
+    "id": "/pwa_blog/",
     "theme_color": "#d8bfd8",
     "background_color": "#ffb6c1"
 }
