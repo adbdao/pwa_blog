@@ -54,7 +54,7 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 .nf{font-size: 24pt;color: indigo;}
 
 #div3 {background:#aea;height: 70vh;width: 100%;text-align: center;}
-.gkNumClass{font-size: 24pt;color: rgb(194, 172, 194);width: 50vw;}
+.gkNumClass{font-size: 24pt;color: darkviolet;width: 50vw;}
 #gkNum2{width: 30vw;}
 .gk{color: green;}
 
@@ -219,18 +219,22 @@ window.onload = function () {
         return '總共輸入' + DataTime + '次，總計' + DataSum + ones + logo
     }
     function Copy() {
-        // 結束時選取並複製文本框中的內容
-        txt1.select()
-        document.execCommand('Copy')
-        alert('已複製你查詢的內容，可以直接到別的APP中「貼上」')
+        // 沒有限制內容的頁面的話，就複製
+        if (c1 == 0) {
+            // 結束時選取並複製文本框中的內容
+            txt1.select()
+            document.execCommand('Copy')
+            alert('已複製你查詢的內容，可以直接到別的APP中「貼上」')
+        }
     }
     var logo = '<span>/三德精舍(埤頭)</span>'
 
     // 輸入的佛號數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
     // 記錄頁面有無東西
-    var s1, s2
+    var s1, s2, c1 = 0
     nfShow.innerHTML = ''
     btnSave1.onclick = () => {
+        c1 = 0
         var nf1 = nfNum1.value
         if (!nf1) {
             alert('請輸入數目')
@@ -250,6 +254,8 @@ window.onload = function () {
     }
     // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回
     btnSearch1.onclick = () => {
+        // 限制內容為不可複製
+        c1 = 1
         // 查詢內容
         localDataAll('nf')
         // 顯示
@@ -262,6 +268,7 @@ window.onload = function () {
     }
     // 查詢「瀏覽器本地存儲」中的內容，統計總數，並返回數字
     btnSum1.onclick = () => {
+        c1 = 0
         // 查詢內容+顯示
         nfShow.innerHTML = localDataSum('nf', '句佛號')
         // 記錄頁面已有資料
@@ -276,6 +283,7 @@ window.onload = function () {
     // 輸入功課數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
     gkShow.innerHTML = ''
     btnSave2.onclick = () => {
+        c1 = 0
         var gk1 = gkNum1.value
         var gk2 = gkNum2.value
         // 檢查是否有輸入資料
@@ -305,6 +313,8 @@ window.onload = function () {
     }
     // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回
     btnSearch2.onclick = () => {
+        // 限制內容為不可複製
+        c1 = 1
         // 查詢內容
         localDataAll('gk')
         // 顯示
@@ -317,6 +327,7 @@ window.onload = function () {
     }
     // 查詢「瀏覽器本地存儲」中的內容，統計總數，並返回數字
     btnSum2.onclick = () => {
+        c1 = 0
         // 查詢內容+顯示
         gkShow.innerHTML = localDataSum('gk', '遍')
         // 記錄頁面已有資料
@@ -393,7 +404,7 @@ window.onload = function () {
         </div>
         
         <div id="div5" class="divShow">
-            <iframe id="blog2" frameborder="0"></iframe>
+            <iframe id="blog2" frameborder="0" src="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"></iframe>
         </div>
 
         <div id="div2" class="divShow">
@@ -497,7 +508,7 @@ window.addEventListener('load', function () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register(
       // Github路徑
-      '/pwa_blog/sw.js',
+      '/pwa_blog/pwabuilder-sw.js',
       { scope: '/pwa_blog/' }
     )
       .then(function (registration) {
@@ -537,8 +548,8 @@ window.addEventListener('load', function () {
   })
 })
 
-
-const cacheName = 'nfPWA';
+// 要每次更換名稱，才能緩存更新
+const cacheName = 'nf1';
 
 self.addEventListener('install', event => {
   event.waitUntil(
