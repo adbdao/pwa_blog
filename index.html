@@ -25,14 +25,16 @@ table{height: 100%;width: 100%;border: 0;text-align: center;}
 
 /* 全部按鈕 */
 button {border-radius: 15px;border:0; background: -webkit-linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%); background: linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);box-shadow: 4px 3px 4px silver,8px 7px 7px gray;}
-button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: -5px -5px 20px darkorchid;}
+button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;
+    /* box-shadow: -5px -5px 20px darkorchid; */
+}
 /* 上邊全部按鈕 */
 .tdup{height: 10vh;width: 50vw;}
 /* 各別按鈕 */
 #addPWA{height: 90%;color: blue; font-size: 12pt; text-align: justify;}
 #reload{height:90%;color: green; font-size: 18pt;  text-align: justify;}
 /* 下邊全部按鈕 */
-.tddown{height: 20vh;width: 20vw;}
+.tddown{height: 20vh;width: calc(100vw / 6);}
 .btnshow{height: 90%;width: 90%; color: brown; font-size: 20pt; }
 
 
@@ -48,8 +50,10 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 /* #div0 {background:#ccc;background:#fec;} */
 #div1 {display: block;}
 
+#div6 {background:#adf;height: 70vh;width: 100%;text-align: center;}
+
 #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;}
-#nfShow,#gkShow{height: 50%;width: 100%;padding: 2vh 0 0 0 ; font-size: 24pt;color: blue;overflow: auto;}
+#nfShow1,#nfShow2,#gkShow{height: 50%;width: 100%;padding: 2vh 0 0 0 ; font-size: 24pt;color: blue;overflow: auto;}
 .nfNumClass{font-size: 24pt;color: green;width: 50vw;}
 .nf{font-size: 24pt;color: indigo;}
 
@@ -58,9 +62,8 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 #gkNum2{width: 30vw;}
 .gk{color: green;}
 
-/* #div4 {background:#f99} */
 #div4 {background:tan;height: 70vh;width: 100%;}
-.clean{color: black;display: none;position: absolute;width: 250px;height: 200px;}
+.clean{color: black;display: none;position: absolute;width: 300px;height: 200px;}
 .clean td{padding: 5px 5px;}
 #cleanShow{height: 90%;width: 100%;overflow: auto;
     /* background-image: url(icons/sd512.png);background-size: 100% 100%;opacity: 0.5; */
@@ -95,7 +98,7 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 #reload{ font-size: 36pt;}
 /* 下邊全部按鈕 */
 .tddown{height: 10vh;}
-.btnshow{ font-size: 40pt; }
+.btnshow{ font-size: 36pt; }
 
 
 /* .btnmula{height: 20vh;width: 100%;}
@@ -108,13 +111,13 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 /* 全部頁面 */
 /* class比不過id */
 /* .divShow{height: 80vh;} */
-#div1,#div2,#div3,#div4,#div5{height: 80vh;}
+#div1,#div2,#div3,#div4,#div5,#div6{height: 80vh;}
 /* 各別頁面 */
 /* #div0 {background:#ccc;background:#fec;} */
 /* #div1 {display: block;} */
 
 /* #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;} */
-#nfShow{height: 75%;font-size: 32pt;}
+#nfShow1,#nfShow2{height: 75%;font-size: 32pt;}
 #gkShow{height: 70%;font-size: 32pt;}
 .nfNumClass{font-size: 48pt;}
 .nf{font-size: 48pt;}
@@ -127,8 +130,11 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 
 /* #div4 {background:#f99} */
 /* #div4 {background:tan;height: 70vh;width: 100%;text-align: center;} */
-.clean{width: 600px;height: 500px;}
+.clean{width: 650px;height: 500px;}
 #cleanShow{ font-size: 48pt;}
+/* 為老人特別放大字體 */
+p ,p font ,p span{font-size: 96pt;}
+
 #me,#me td{font-size: 32pt;}
 }
 </style>
@@ -148,6 +154,7 @@ window.onload = function () {
     btn3.onclick = () => { showdiv(div3) }
     btn4.onclick = () => { showdiv(div4) }
     btn5.onclick = () => { showdiv(div5) }
+    btn6.onclick = () => { showdiv(div6) }
     // 顯示「刪除所有記錄」按鈕，套用在按鈕上
     btnClean0.onclick = () => {
         var buttonNone = document.getElementsByClassName('clean')
@@ -174,6 +181,13 @@ window.onload = function () {
         var htr = oDate.getHours() + ':' + oDate.getMinutes() + ':' + oDate.getSeconds()
         return dtr + '~' + htr
     }
+    // 今日日期
+    function addToday() {
+        var oDate = new Date()
+        var dtr = oDate.getFullYear() + '-' + (oDate.getMonth() + 1) + '-' + oDate.getDate()
+        // var htr = oDate.getHours() + ':' + oDate.getMinutes() + ':' + oDate.getSeconds()
+        return dtr
+    }
     // 查詢「瀏覽器本地存儲」中的內容，編號到幾號，返回下一個新編號
     function localNum(name) {
         for (var j = 1; j < 99999; j++) {
@@ -181,6 +195,8 @@ window.onload = function () {
                 // 不能用break，會中斷函數
                 // break
                 return j
+                // break放在後面可以
+                break
             }
         }
     }
@@ -216,7 +232,8 @@ window.onload = function () {
                 break
             }
         }
-        return '總共輸入' + DataTime + '次，總計' + DataSum + ones + logo
+        // 加上logo及樣式
+        return '<p>總共輸入' + DataTime + '次，<br><font>總計' + DataSum + ones + '</font><br>' + logo + '</p>'
     }
     function Copy() {
         // 沒有限制內容的頁面的話，就複製
@@ -230,23 +247,24 @@ window.onload = function () {
     var logo = '<span>/三德精舍(埤頭)</span>'
 
     // 輸入的佛號數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
-    // 記錄頁面有無東西
-    var s1, s2, c1 = 0
-    nfShow.innerHTML = ''
+    // 記錄頁面有無東西，預設有「備註說明」
+    var s1 = 1, s2 = 1, s3 = 1, c1 = 0
+    nfShow1.innerHTML = '<br>註：更換手機平板設備前，請先備份數量，<br>本資料庫儲存在手機中，非雲端'
     btnSave1.onclick = () => {
         c1 = 0
         var nf1 = nfNum1.value
         if (!nf1) {
             alert('請輸入數目')
         } else {
+            // 防呆
             if (confirm('確定儲存？')) {
                 localStorage['nf' + localNum('nf')] = addDate() + ' 念佛' + nf1 + '聲'
                 // 頁面有查詢內容，就歸零
                 if (s1 == 1) {
-                    nfShow.innerHTML = ''
+                    nfShow1.innerHTML = ''
                     s1 = 0
                 }
-                nfShow.innerHTML += addDate() + ' <font>念佛' + nf1 + '聲</font>' + logo + '<br>'
+                nfShow1.innerHTML += addDate() + ' <font>念佛' + nf1 + '聲</font>' + logo + '<br>'
                 // 清空輸入的資料，才不會重複儲存
                 nfNum1.value = null
             }
@@ -259,7 +277,7 @@ window.onload = function () {
         // 查詢內容
         localDataAll('nf')
         // 顯示
-        nfShow.innerHTML = DataAll.join('<br>')
+        nfShow1.innerHTML = DataAll.join('<br>')
         // alert(DataAll.join('\n'))
         // 清除使用過的陣列
         DataAll.length = 0
@@ -270,18 +288,180 @@ window.onload = function () {
     btnSum1.onclick = () => {
         c1 = 0
         // 查詢內容+顯示
-        nfShow.innerHTML = localDataSum('nf', '句佛號')
+        nfShow1.innerHTML = localDataSum('nf', '句佛號')
         // 記錄頁面已有資料
         s1 = 1
     }
     // 複製頁面顯示的任何資料
     btnCopy1.onclick = () => {
-        txt1.value = nfShow.innerText
+        txt1.value = nfShow1.innerText
         Copy()
     }
 
+    // 輸入的計數器數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
+    // 〈最後記錄〉
+    function localLast(name, s) {
+        return localStorage[name + (localNum(name) - Number(s))]
+    }
+    // 〈最後記錄〉減〈最後記錄〉前一筆，所得的數。而計數器每100000會重新歸0
+    function localLastNum(name) {
+        var jsqOld = 0
+        var jsqLastNum1
+        var jsqLastNum2
+        // 判斷是否有值，否則會出錯
+        if (localLast(name, '1')) {
+            jsqLastNum1 = Number(localLast(name, '1').replace(/[^ ]+ \D+(\d+)\D+/, '$1'))
+        } else {
+            jsqLastNum1 = null
+        }
+        if (localLast(name, '2')) {
+            jsqLastNum2 = Number(localLast(name, '2').replace(/[^ ]+ \D+(\d+)\D+/, '$1'))
+        } else {
+            jsqLastNum2 = null
+        }
+        // 判斷是否有值，否則會出錯
+        if (jsqLastNum2) {
+            if (jsqLastNum1 > jsqLastNum2) {
+                jsqOld = jsqLastNum1 - jsqLastNum2
+            } else {
+                // 計數器每100000會重新歸0
+                jsqOld = 100000 - jsqLastNum2 + jsqLastNum1
+            }
+        } else if (jsqLastNum1) {
+            // 只有1筆資料
+            jsqOld = jsqLastNum1
+        } else {
+            // 無資料
+            jsqOld = 0
+        }
+        return jsqOld
+    }
+    function jsqFirstShow() {
+        var FirstShow = ''
+        // 判斷是否有值，否則會出錯
+        if (localLast('jsq', '2')) {
+            FirstShow = '<p><font>最後記錄<br>' + localLast('jsq', '1') + '</font> ' + '<br>念佛' + localLastNum('jsq') + '聲</p>'
+        } else if (localLast('jsq', '1')) {
+            // 只有1筆資料
+            FirstShow = '<p><font>最後記錄<br>' + localLast('jsq', '1') + '</font> ' + '<br>念佛' + localLastNum('jsq') + '聲</p>'
+        } else {
+            // 無資料
+            FirstShow = '<p><span>尚未輸入計數器數字</span></p>'
+        }
+        return FirstShow
+    }
+
+    // 預設顯示最後1筆
+    nfShow2.innerHTML = jsqFirstShow() + '<hr>註：更換手機平板設備前，請先備份數量，<br>本資料庫儲存在手機中，非雲端'
+    btnSave3.onclick = () => {
+        c1 = 0
+        var nf2 = nfNum2.value
+        if (!nf2) {
+            alert('請輸入數目')
+        } else {
+            // 儲存最後總數，不必重複計算
+            var jsqNow = localNum('jsq')
+            // 防呆
+            if (confirm('確定儲存？')) {
+                localStorage['jsq' + jsqNow] = addToday() + ' 計數器' + nf2 + '聲'
+                // 頁面有查詢內容，就歸零
+                if (s3 == 1) {
+                    nfShow2.innerHTML = ''
+                    s3 = 0
+                }
+                if (jsqNow == 1) {
+                    // 第一次輸入，所以不必計算數量
+                    nfShow2.innerHTML += addToday() + ' <font>計數器' + nf2 + '聲</font>' + logo + '<br>首次輸入計數器數字，總共念佛' + nf2 + '聲' + '<br>'
+                } else {
+                    nfShow2.innerHTML += addToday() + ' <font>計數器' + nf2 + '聲</font>' + logo + '<br>今日念佛' + localLastNum('jsq') + '聲<br>'
+                }
+                // 清空輸入的資料，才不會重複儲存
+                nfNum2.value = null
+            }
+        }
+    }
+    // 查詢「瀏覽器本地存儲」中的內容，全部導入陣列，並返回
+    btnSearch3.onclick = () => {
+        DatajsqAll()
+        // 清除使用過的陣列，不然會重複計算
+        DatajsqSum = 0
+    }
+    var DatajsqSum = 0
+    // 為了計算〈累計總數〉，只好裝入函式
+    function DatajsqAll() {
+        // 限制內容為不可複製
+        c1 = 1
+        var Datajsq = []
+        var DatajsqNum = []
+        // 查詢內容
+        for (var j = 1; j < 99999; j++) {
+            if (localStorage['jsq' + j]) {
+                // 加上樣式，區分日期、人名
+                // DataAll.push(localStorage['jsq' + j].replace(/([^ ]+ )(.+)/, '<span>$1</span>'))
+                DataAll.push(localStorage['jsq' + j].replace(/([^ ]+ )(.+)/, '<span>$1</span><font>$2</font>'))
+                // 只取出數量
+                Datajsq.push(localStorage['jsq' + j].replace(/[^ ]+ \D+(\d+)\D+/, '$1'))
+            } else {
+                // 這裡可以加break，會快很多
+                break
+            }
+        }
+        // 計算每筆記錄的數量
+        for (var i = 0; i < Datajsq.length; i++) {
+            // 判斷是否有值，否則會出錯
+            if (Datajsq[i] && Datajsq[i + 1]) {
+                DatajsqNum[0] = Number(Datajsq[0])
+                if (Datajsq[i] < Datajsq[i + 1] || Datajsq[i] == Datajsq[i + 1]) {
+                    DatajsqNum[i + 1] = Number(Datajsq[i + 1]) - Number(Datajsq[i])
+                } else {
+                    // 計數器每100000會重新歸0
+                    DatajsqNum[i + 1] = 100000 - Number(Datajsq[i]) + Number(Datajsq[i + 1])
+                }
+            } else if (Datajsq[i]) {
+                // 只有1筆資料
+                DatajsqNum[i] = Number(Datajsq[i])
+            }
+            // 計算數量的結果，套入陣列
+            DataAll[i] = DataAll[i] + ' 當日念佛' + DatajsqNum[i] + '聲' + logo
+        }
+        // 計算總共念佛數量
+        for (var k of DatajsqNum) {
+            DatajsqSum += k
+        }
+        // 顯示
+        if (DataAll.length != 0) {
+            nfShow2.innerHTML = DataAll.join('<br>')
+        } else {
+            // 無資料
+            nfShow2.innerHTML = '<p><span>尚未輸入計數器數字</span></p>'
+        }
+        // alert(DataAll.join('\n'))
+        // 清除使用過的陣列
+        DataAll.length = 0
+        Datajsq.length = 0
+        DatajsqNum.length = 0
+        // 記錄頁面已有資料
+        s3 = 1
+    }
+    // 查詢「瀏覽器本地存儲」中的內容，統計總數，並返回數字
+    btnSum3.onclick = () => {
+        c1 = 0
+        // 查詢內容+顯示
+        DatajsqAll()
+        nfShow2.innerHTML = '<p>累計總數' + DatajsqSum + '句佛號<br>' + logo + '</p>' + jsqFirstShow()
+        // 清除使用過的陣列
+        DatajsqSum = 0
+        // 記錄頁面已有資料
+        s3 = 1
+    }
+    // 複製頁面顯示的任何資料
+    // btnCopy3.onclick = () => {
+    //     txt1.value = nfShow2.innerText
+    //     Copy()
+    // }
+
     // 輸入功課數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
-    gkShow.innerHTML = ''
+    gkShow.innerHTML = '<br>註：更換手機平板設備前，請先備份數量，<br>本資料庫儲存在手機中，非雲端'
     btnSave2.onclick = () => {
         c1 = 0
         var gk1 = gkNum1.value
@@ -290,6 +470,7 @@ window.onload = function () {
         if (!gk1 || !gk2) {
             alert('請輸入"功課名稱"與"數目"')
         } else {
+            // 防呆
             if (confirm('確定儲存？')) {
                 localStorage['gk' + localNum('gk')] = addDate() + ' ' + gk2 + gk1 + '遍'
                 // 頁面有查詢內容，就歸零
@@ -362,10 +543,10 @@ window.onload = function () {
                 if (localStorage[name + j]) {
                     delete localStorage[name + j]
                 } else {
-                    // 這裡可以加break，會快很多
-                    // break
                     // 也可以直接回報
                     return alert('刪除完畢')
+                    // 這裡可以加break，會快很多
+                    break
                 }
             }
             // 檢查是否完成
@@ -384,11 +565,15 @@ window.onload = function () {
     btnClean3.onclick = () => {
         DellocalDataAll('gk', '功課')
     }
+    // 刪除所有計數器記錄
+    btnClean4.onclick = () => {
+        DellocalDataAll('jsq', '計數器')
+    }
 }
 </script>
 </head>
 <body>
-    <div id="divmula" class="mula">
+    <!-- <div id="divmula" class="mula"> -->
         <div id="div1" class="divShow">
 
             <table id="first">
@@ -402,13 +587,23 @@ window.onload = function () {
 
             <iframe id="blog1" frameborder="0"></iframe>
         </div>
-        
+
+        <div id="div6" class="divShow">
+            <div id="nfShow2"></div>
+            <input id="nfNum2" class="nfNumClass" type="number" placeholder="今日計數器總數" />
+            <button id="btnSave3" class="nf">儲存</button>
+            <br /><button id="btnSearch3" class="nf">查詢記錄</button>
+            <button id="btnSum3" class="nf">上次念佛數目</button> 
+            <!-- <button id="btnCopy1" class="nf">複製</button> -->
+        </div>
+
         <div id="div5" class="divShow">
             <iframe id="blog2" frameborder="0" src="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"></iframe>
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/OSi3X2OLres" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
 
         <div id="div2" class="divShow">
-            <div id="nfShow"></div>
+            <div id="nfShow1"></div>
             <input id="nfNum1" class="nfNumClass" type="number" placeholder="今日念佛總數" />
             <button id="btnSave1" class="nf">儲存</button>
             <br /><button id="btnSearch1" class="nf">查詢記錄</button> <button id="btnSum1" class="nf">總計</button> <button
@@ -428,6 +623,7 @@ window.onload = function () {
 
             <button id="btnClean0" class="nf">清除記錄</button>
             <table class="clean">
+                <tr><td><button id="btnClean4" class="nf">清除計數器記錄</button></td></tr>
                 <tr><td><button id="btnClean2" class="nf">清除佛號記錄</button></td></tr>
                 <tr><td><button id="btnClean3" class="nf">清除功課記錄</button></td></tr>
                 <tr><td><button id="btnClean1" class="nf">清除所有記錄</button></td></tr>
@@ -482,13 +678,14 @@ window.onload = function () {
                 </table>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 
     <table>
         <tr>
             <!-- <div id="btnmula" class="mula"> -->
             <td class="tddown"><button id="btn1" class="btnshow">首頁</button></td>
             <td class="tddown"><button id="btn5" class="btnshow">最新<br />消息</button></td>
+            <td class="tddown"><button id="btn6" class="btnshow">計數器</button></td>
             <td class="tddown"><button id="btn2" class="btnshow">念佛<br />計數</button></td>
             <td class="tddown"><button id="btn3" class="btnshow">功課<br />計數</button></td>
             <td class="tddown"><button id="btn4" class="btnshow">關於我</button></td>
@@ -547,64 +744,6 @@ window.addEventListener('load', function () {
     }
   })
 })
-
-// 要每次更換名稱，才能緩存更新
-const cacheName = 'nf1';
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(cacheName)
-      .then(cache => cache.addAll([
-    //   只要有一個載入失敗，就全部失敗，所以盡量少
-        '/pwa_blog/index.html',
-        // 'css1.css',
-        // 'nf.js',
-        // 'sw.js',
-        // 'blog.webmanifest',
-        // 'icons/sd48.png',
-        // 'icons/sd192.png',
-        '/pwa_blog/icons/sd512.png'
-        // 不知道Github路徑，只好全部加入
-        // '/pwa_blog/index.html',
-        // '/pwa_blog/css1.css',
-        // '/pwa_blog/nf.js',
-        // '/pwa_blog/sw.js',
-        // '/pwa_blog/blog.webmanifest',
-        // '/pwa_blog/icons/sd48.png',
-        // '/pwa_blog/icons/sd192.png',
-        // '/pwa_blog/icons/sd512.png'
-      ]))
-  )
-})
-
-self.addEventListener('fetch', function (event) {
-  event.respondWith(
-    caches.match(event.request, { ignoreSearch: true })
-      .then(function (response) {
-        if (response) {
-          return response
-        }
-
-        var requestToCache = event.request.clone()
-
-        return fetch(requestToCache).then(
-          function (response) {
-            if (!response || response.status !== 200) {
-              return response
-            }
-
-            var requestToCache = response.clone()
-
-            cache.open(cacheName)
-              .then(function (cache) {
-                cache.put(requestToCache, requestToCache)
-              })
-            return response
-          }
-        )
-      })
-  )
-});
     </script>
 </body>
 

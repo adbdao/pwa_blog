@@ -22,7 +22,7 @@
             "type": "image/png"
         }
     ],
-    "display": "fullscreen",
+    "display": "standalone",
     "scope": "/pwa_blog/",
     "start_url": "/pwa_blog/",
     "id": "/pwa_blog/",
