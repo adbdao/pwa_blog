@@ -576,6 +576,44 @@ window.onload = function () {
         DellocalDataAll('jsq', '計數器')
     }
 }
+
+    function saveShowJsj() {
+        if (localStorage['jsjSave']) {
+            num2.value = localStorage['jsjSave']
+        } else {
+            alert('無記錄')
+        }
+    }
+    function saveJsj() {
+        if (num1.value && num2.value && result.value) {
+            localStorage['jsjSave'] = num1.value
+            div7.style.display = 'none'
+            div2.style.display = 'block'
+            nfNum1.value = result.value
+        }else {
+            alert('請先完成計算')
+        }
+    }
+    function DEL() {
+        if (confirm("確認清空嗎?")) {
+            num1.value = null;
+            num2.value = null;
+            result.value = null;
+        }
+        return false;
+    }
+    function MCK() {
+        if (!num2.value) {
+            alert("請輸入：昨日念佛總數");
+            return false;
+        }
+        if (!num1.value) {
+            alert("請輸入：今日念佛總數");
+            return false;
+        }
+        //減
+        result.value = num1.value - num2.value;
+    }
 </script>
 </head>
 <body>
@@ -595,159 +633,50 @@ window.onload = function () {
         </div>
 
         <div id="div7" class="divShow">
-
 <style>
-    #jsj1,#jsj2 {width: 300px;height: 300px;margin: 0 auto ;display:none;}
-    #jsj {width: 500px;height: 90px;margin: 0 auto;}
-    #jsj1 td,#jsj2 td {font-size:24pt; color: #FFFFFF; width:100px}
-    #jsj td {width: 300px}
-    #jsj td:nth-child(1) {width: 200px;}
-    .Button ,.Button2{font-size:24pt; color: #FFFFFF; background: #999999; margin: 4px 4px; width: 100%; height: 100%; border-color: #CCCCCC #333333 #333333 #CCCCCC; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
-    .text_input {font-size:24pt; color: #000000; background: #CCCCCC; text-align: right}
+    #jsj {width: 550px;height: 90px;margin: 0 auto;padding: 10px 0 10px 0;}
+    #jsj1,#jsj2 {width: 300px;height: 100px;margin: 0 auto ;}
+    /* #jsj td {width: 300px}
+    #jsj td:nth-child(1) {width: 200px;} */
+    #jsj1 td,#jsj2 td {font-size:24pt; color: white; width:100px}
+    .Button ,.Button2{font-size:24pt; color: white; background: #999; margin: 4px 4px; width: 100%; height: 100%; border-color: #ccc #333 #333 #ccc; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+    .text_input {font-size:24pt; color: black; background: #ccc; text-align: right;width: 300px;}
     .Button2{color: red;font-size: 28pt;}
 @media screen and (orientation:portrait){
-    #jsj1,#jsj2 {width: 600px;height: 600px;}
-    #jsj {width: 800px;height: 200px;}
-    #jsj1 td,#jsj2 td {font-size:48pt; color: #FFFFFF; width:200px}
-    #jsj td {width: 400px}
-    #jsj td:nth-child(1) {width: 400px;}
-    .Button ,.Button2{font-size:48pt;}
-    .text_input {font-size:48pt;}
+    #jsj {width: 90vw;height: 200px;padding: 80px 0 80px 0}
+    #jsj1,#jsj2 {width: 60vw;height: 200px;}
+    .Button ,.Button2{font-size:40pt;}
+    .text_input {font-size:48pt;width: 500px;}
     .Button2{font-size: 60pt;}
 }
 </style>
-
 <table id="jsj">
     <tr>
-        <td class="Button">昨日念佛總數</td>
-        <td id="num2" class="text_input">0</td>
+        <td class="Button">今日念佛總數</td>
+        <td><input id="num1" class="text_input" type="number" placeholder="0" /></td>
     </tr>
     <tr>
-        <td class="Button">今日念佛總數</td>
-        <td id="num1" class="text_input">0</td>
+        <td class="Button">昨日念佛總數</td>
+        <td><input id="num2" class="text_input" type="number" placeholder="0" /></td>
     </tr>
     <tr>
         <td class="Button">結算</td>
-        <td id="result" class="text_input">0</td>
-    </tr>
-</table>
-<table id="jsj2">
-    <tr>
-        <td><input name="btnSeven" type="Button" value="  7  " onclick="NumPressed(7,num2)" class="Button"></td>
-        <td><input name="btnEight" type="Button" value="  8  " onclick="NumPressed(8,num2)" class="Button"></td>
-        <td><input name="btnNine" type="Button" value="  9  " onclick="NumPressed(9,num2)" class="Button"></td>
-    </tr>
-    <tr>
-        <td><input name="btnFour" type="Button" value="  4  " onclick="NumPressed(4,num2)" class="Button"></td>
-        <td><input name="btnFive" type="Button" value="  5  " onclick="NumPressed(5,num2)" class="Button"></td>
-        <td><input name="btnSix" type="Button" value="  6  " onclick="NumPressed(6,num2)" class="Button"></td>
-    </tr>
-    <tr>
-        <td><input name="btnOne" type="Button" value="  1  " onclick="NumPressed(1,num2)" class="Button"></td>
-        <td><input name="btnTwo" type="Button" value="  2  " onclick="NumPressed(2,num2)" class="Button"></td>
-        <td><input name="btnThree" type="Button" value="  3  " onclick="NumPressed(3,num2)" class="Button"></td>
-        <td><input class="Button" type="button" value="昨日記錄" onclick="saveShow()">
-        </td>
-    <tr>
-        <td><input class="Button" type="button" value="清除" onclick="DEL(5)">
-        </td>
-        <td><input name="btnZero" type="Button" value="  0  " onclick="NumPressed(0,num2)" class="Button"></td>
-        <td><input class="Button2" type="button" value="相減" onclick="MCK(2)">
-        <td><input class="Button2" type="button" value="儲存" onclick="save()">
-        </td>
+        <td><input id="result" class="text_input" type="number" placeholder="0" /></td>
     </tr>
 </table>
 <table id="jsj1">
     <tr>
-        <td><input name="btnSeven" type="Button" value="  7  " onclick="NumPressed(7,num1)" class="Button"></td>
-        <td><input name="btnEight" type="Button" value="  8  " onclick="NumPressed(8,num1)" class="Button"></td>
-        <td><input name="btnNine" type="Button" value="  9  " onclick="NumPressed(9,num1)" class="Button"></td>
-    </tr>
-    <tr>
-        <td><input name="btnFour" type="Button" value="  4  " onclick="NumPressed(4,num1)" class="Button"></td>
-        <td><input name="btnFive" type="Button" value="  5  " onclick="NumPressed(5,num1)" class="Button"></td>
-        <td><input name="btnSix" type="Button" value="  6  " onclick="NumPressed(6,num1)" class="Button"></td>
-    </tr>
-    <tr>
-        <td><input name="btnOne" type="Button" value="  1  " onclick="NumPressed(1,num1)" class="Button"></td>
-        <td><input name="btnTwo" type="Button" value="  2  " onclick="NumPressed(2,num1)" class="Button"></td>
-        <td><input name="btnThree" type="Button" value="  3  " onclick="NumPressed(3,num1)" class="Button"></td>
-        <td><input class="Button" type="button" value="昨日記錄" onclick="saveShow()">
+        <td><input class="Button" type="button" value="昨日記錄" onclick="saveShowJsj()">
         </td>
+        <td><input class="Button" type="button" value="清除" onclick="DEL()">
     <tr>
-        <td><input class="Button" type="button" value="清除" onclick="DEL(5)">
         </td>
-        <td><input name="btnZero" type="Button" value="  0  " onclick="NumPressed(0,num1)" class="Button"></td>
-        <td><input class="Button2" type="button" value="相減" onclick="MCK(2)">
-        <td><input class="Button2" type="button" value="儲存" onclick="save()">
+        <td><input class="Button2" type="button" value="相減" onclick="MCK()">
+        <td><input class="Button2" type="button" value="儲存" onclick="saveJsj()">
         </td>
     </tr>
 </table>
-
-<script>
-    function saveShow() {
-        if (localStorage['jsjSave']) { num2.innerHTML = localStorage['jsjSave'] } }
-    function save() {
-        if (localStorage['jsjSave']) { num2.innerHTML = localStorage['jsjSave'] } 
-        localStorage['jsjSave'] = num1.innerHTML
-        div7.style.display = 'none'
-        div2.style.display = 'block'
-        nfNum1.value = result.innerHTML
-    }
-    num1.onmousedown = () => { showjsj1() }
-    num2.onmousedown = () => { showjsj2() }
-    function showjsj1() {
-        jsj2.style.display = 'none'
-        jsj1.style.display = 'block'
-    }
-    function showjsj2() {
-        jsj1.style.display = 'none'
-        jsj2.style.display = 'block'
-    }
-    function DEL(type) {
-        if (type == 5) {
-            if (confirm("確認清空嗎?")) {
-                num1.innerHTML = "0";
-                num2.innerHTML = "0";
-                result.innerHTML = "0";
-            }
-            return false;
-        }
-    }
-    function MCK(type) {
-        if (num1.innerHTML == "") {
-            alert("今日念佛總數 沒輸入");
-            return false;
-        }
-        if (num2.innerHTML == "") {
-            alert("昨日念佛總數 沒輸入");
-            return false;
-        }
-        //減
-        if (type == 2) {
-            var total = parseInt(num1.innerHTML) - parseInt(num2.innerHTML);
-            result.innerHTML = total
-        }
-    }
-    var FKeyPad = document.Keypad;
-    var Accum = 0;
-    var FlagNewNum = false;
-    var PendingOp = "";
-    function NumPressed(Num, id) {
-        if (FlagNewNum) {
-            id.innerHTML = Num;
-            FlagNewNum = false;
-        }
-        else {
-            if (id.innerHTML == "0")
-                id.innerHTML = Num;
-            else
-                id.innerHTML += Num;
-        }
-    }
-</script>
-
-        </div>
+</div>
 
         <div id="div6" class="divShow">
             <div id="nfShow2"></div>
