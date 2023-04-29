@@ -25,7 +25,7 @@ table{height: 100%;width: 100%;border: 0;text-align: center;}
 
 /* 全部按鈕 */
 button {border-radius: 15px;border:0; background: -webkit-linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%); background: linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);box-shadow: 4px 3px 4px silver,8px 7px 7px gray;}
-button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;
+button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width:5px;border-style:solid;box-shadow: 0 0;
     /* box-shadow: -5px -5px 20px darkorchid; */
 }
 /* 上邊全部按鈕 */
@@ -635,17 +635,19 @@ window.onload = function () {
         <div id="div7" class="divShow">
 <style>
     #jsj {width: 550px;height: 90px;margin: 0 auto;padding: 10px 0 10px 0;}
-    #jsj1,#jsj2 {width: 300px;height: 100px;margin: 0 auto ;}
+    #jsj1 {width: 300px;height: 100px;margin: 0 auto ;}
     /* #jsj td {width: 300px}
     #jsj td:nth-child(1) {width: 200px;} */
-    #jsj1 td,#jsj2 td {font-size:24pt; color: white; width:100px}
-    .Button ,.Button2{font-size:24pt; color: white; background: #999; margin: 4px 4px; width: 100%; height: 100%; border-color: #ccc #333 #333 #ccc; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
-    .text_input {font-size:24pt; color: black; background: #ccc; text-align: right;width: 300px;}
+    #jsj1 td {font-size:24pt; color: white; width:100px}
+    .Button ,.Button2{font-size:24pt; color: white; background: #777; margin: 4px 4px; width: 100%; height: 100%; border-color: #ccc #333 #333 #ccc; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+    /* input{ text-align: right;} */
+    .text_input {font-size:24pt; color: black; text-align: right; background: #ccc;width: 300px;}
     .Button2{color: red;font-size: 28pt;}
+    .Button3{color: lime;}
 @media screen and (orientation:portrait){
     #jsj {width: 90vw;height: 200px;padding: 80px 0 80px 0}
-    #jsj1,#jsj2 {width: 60vw;height: 200px;}
-    .Button ,.Button2{font-size:40pt;}
+    #jsj1 {width: 60vw;height: 200px;}
+    .Button ,.Button2{font-size:40pt; margin: 20px 20px;}
     .text_input {font-size:48pt;width: 500px;}
     .Button2{font-size: 60pt;}
 }
@@ -666,7 +668,7 @@ window.onload = function () {
 </table>
 <table id="jsj1">
     <tr>
-        <td><input class="Button" type="button" value="昨日記錄" onclick="saveShowJsj()">
+        <td><input class="Button Button3" type="button" value="昨日數字自動輸入" onclick="saveShowJsj()">
         </td>
         <td><input class="Button" type="button" value="清除" onclick="DEL()">
     <tr>
