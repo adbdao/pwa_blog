@@ -633,52 +633,54 @@ window.onload = function () {
         </div>
 
         <div id="div7" class="divShow">
-<style>
-    #jsj {width: 550px;height: 90px;margin: 0 auto;padding: 10px 0 10px 0;}
-    #jsj1 {width: 300px;height: 100px;margin: 0 auto ;}
-    /* #jsj td {width: 300px}
-    #jsj td:nth-child(1) {width: 200px;} */
-    #jsj1 td {font-size:24pt; color: white; width:100px}
-    .Button ,.Button2{font-size:24pt; color: white; background: #777; margin: 4px 4px; width: 100%; height: 100%; border-color: #ccc #333 #333 #ccc; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
-    /* input{ text-align: right;} */
-    .text_input {font-size:24pt; color: black; text-align: right; background: #ccc;width: 300px;}
-    .Button2{color: red;font-size: 28pt;}
-    .Button3{color: lime;}
-@media screen and (orientation:portrait){
-    #jsj {width: 90vw;height: 200px;padding: 80px 0 80px 0}
-    #jsj1 {width: 60vw;height: 200px;}
-    .Button ,.Button2{font-size:40pt; margin: 20px 20px;}
-    .text_input {font-size:48pt;width: 500px;}
-    .Button2{font-size: 60pt;}
-}
-</style>
-<table id="jsj">
-    <tr>
-        <td class="Button">今日念佛總數</td>
-        <td><input id="num1" class="text_input" type="number" placeholder="0" /></td>
-    </tr>
-    <tr>
-        <td class="Button">昨日念佛總數</td>
-        <td><input id="num2" class="text_input" type="number" placeholder="0" /></td>
-    </tr>
-    <tr>
-        <td class="Button">結算</td>
-        <td><input id="result" class="text_input" type="number" placeholder="0" /></td>
-    </tr>
-</table>
-<table id="jsj1">
-    <tr>
-        <td><input class="Button Button3" type="button" value="昨日數字自動輸入" onclick="saveShowJsj()">
-        </td>
-        <td><input class="Button" type="button" value="清除" onclick="DEL()">
-    <tr>
-        </td>
-        <td><input class="Button2" type="button" value="相減" onclick="MCK()">
-        <td><input class="Button2" type="button" value="儲存" onclick="saveJsj()">
-        </td>
-    </tr>
-</table>
-</div>
+            <style>
+                #jsj {width: 550px;height: 90px;margin: 0 auto;padding: 10px 0 10px 0;}
+                #jsj1 {width: 300px;height: 100px;margin: 0 auto ;}
+                /* #jsj td {width: 300px}
+                #jsj td:nth-child(1) {width: 200px;} */
+                /* #jsj1 td {font-size:24pt; color: white; width:100px} */
+                .Button {font-size:24pt; color: white; background: #555; margin: 4px 4px; width: 100%; height: 100%; border-color: #ccc #333 #333 #ccc; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;}
+                .text_input {font-size:24pt; color: black; text-align: right; background: #ccc;width: 300px;}
+                .Button2,.Button3,.Button4{line-height: 32pt;}
+                .Button2{color: deepskyblue;font-size: 30pt;}
+                .Button3{color: lime;}
+                .Button4{color: gold;}
+            @media screen and (orientation:portrait){
+                #jsj {width: 90vw;height: 200px;padding: 80px 0 80px 0}
+                #jsj1 {width: 60vw;height: 200px;}
+                .Button {font-size:48pt; margin: 20px 20px;}
+                .text_input {font-size:54pt;width: 40vw;}
+                .Button2,.Button3,.Button4{line-height: 84pt;}
+                .Button2{font-size: 72pt;}
+            }
+            </style>
+            <table id="jsj">
+                <tr>
+                    <td class="Button">今日念佛總數</td>
+                    <td><input id="num1" class="text_input" type="number" placeholder="0" /></td>
+                </tr>
+                <tr>
+                    <td class="Button">昨日念佛總數</td>
+                    <td><input id="num2" class="text_input" type="number" placeholder="0" /></td>
+                </tr>
+                <tr>
+                    <td class="Button">結算</td>
+                    <td><input id="result" class="text_input" type="number" placeholder="0" /></td>
+                </tr>
+            </table>
+            <table id="jsj1">
+                <tr>
+                    <td><input class="Button Button3" type="button" value="昨日數字自動輸入" onclick="saveShowJsj()">
+                    </td>
+                    <td><input class="Button Button4" type="button" value="清除" onclick="DEL()">
+                <tr>
+                    </td>
+                    <td><input class="Button Button2" type="button" value="相減" onclick="MCK()">
+                    <td><input class="Button Button2" type="button" value="儲存" onclick="saveJsj()">
+                    </td>
+                </tr>
+            </table>
+        </div>
 
         <div id="div6" class="divShow">
             <div id="nfShow2"></div>
@@ -690,8 +692,9 @@ window.onload = function () {
         </div>
 
         <div id="div5" class="divShow">
-            <iframe id="blog2" frameborder="0" src="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"></iframe>
-            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/OSi3X2OLres" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+            <iframe id="blog2" frameborder="0" src="​https://docs.google.com/document/d/1LMDcIOlIHy4UK2uRATWiRwbga4JcEpHKwk4G80Vyg-w/edit?usp=sharing"></iframe>
+            <!-- <iframe id="blog2" frameborder="0" src="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"></iframe> -->
+            <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/OSi3X2OLres" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
 
         <div id="div2" class="divShow">
