@@ -34,14 +34,22 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 #addPWA{height: 90%;color: blue; font-size: 12pt; text-align: justify;}
 #reload{height:90%;color: green; font-size: 18pt;  text-align: justify;}
 /* 下邊全部按鈕 */
-.tddown{height: 20vh;width: calc(100vw / 7);}
+.tddown{height: 20vh;width: calc(100vw / 6);}
 .btnshow{height: 90%;width: 90%; color: brown; font-size: 20pt; }
 
 
 /* .btnmula{height: 20vh;width: 100%;}
 .divmula{height: 80vh;width: 100%;} */
 
-#blog1 {height: 60vh;width: 100%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;}
+#blog1 {height: 60vh;width: 55%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;
+/* 浮動 */
+float: left;
+}
+#fblink{line-height: 40pt;}
+#btnlink1{color: blue;}
+#btnlink2{color: dodgerblue;}
+#btnlink4{color: firebrick;}
+
 #div5 {height: 70vh;width: 100%;background:#ff8;}
 #blog2 {height: 100%;width: 100%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;}
 /* 全部頁面 */
@@ -50,7 +58,10 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 /* #div0 {background:#ccc;background:#fec;} */
 #div1 {display: block;}
 
-#div7 {background:beige;height: 70vh;width: 100%;text-align: center;}
+#div7 {background:beige;height: 70vh;width: 100%;text-align: center;
+/* 停止浮動 */
+clear: both;
+}
 #div6 {background:#adf;height: 70vh;width: 100%;text-align: center;}
 
 #div2 {background:#ebe;height: 70vh;width: 100%;text-align: center;}
@@ -106,7 +117,18 @@ button {border-radius: 25px;box-shadow: 8px 7px 8px silver,16px 14px 14px gray;}
 .divmula{height: 80vh;width: 100%;} */
 
 /* 新聞頁加長 */
-#blog1 {height: 70vh;padding: 3vh 0 0 0 ;}
+#blog1 {height: 50vh;padding: 3vh 0 0 0 ;
+}
+#fblink{
+/* 停止浮動 */
+clear: both;
+-moz-column-count: 2;
+/* Firefox */
+-webkit-column-count: 2;
+/* Safari and Chrome */
+column-count: 2;
+letter-spacing: 300px;
+}
 /* #blog2 {height: 75vh;} */
 
 /* 全部頁面 */
@@ -154,7 +176,7 @@ window.onload = function () {
     btn2.onclick = () => { showdiv(div2) }
     btn3.onclick = () => { showdiv(div3) }
     btn4.onclick = () => { showdiv(div4) }
-    btn5.onclick = () => { showdiv(div5) }
+    // btn5.onclick = () => { showdiv(div5) }
     btn6.onclick = () => { showdiv(div6) }
     btn7.onclick = () => { showdiv(div7) }
     // 顯示「刪除所有記錄」按鈕，套用在按鈕上
@@ -630,6 +652,13 @@ window.onload = function () {
             </table>
 
             <iframe id="blog1" frameborder="0"></iframe>
+
+            <div id="fblink">
+                <a href="https://www.facebook.com/groups/tw048911311"><button id="btnlink1" class="nf">精舍FACEBOOK社團</button></a>
+                <a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><button id="btnlink3" class="nf gk">精舍LINE公告群</button></a>
+                <a href="https://www.facebook.com/sande04081117/"><button id="btnlink2" class="nf">精舍FACEBOOK粉絲頁</button></a>
+                <a href="https://www.youtube.com/@bsdv"><button id="btnlink4" class="nf">精舍YOUTUBE</button></a>
+            </div>
         </div>
 
         <div id="div7" class="divShow">
@@ -694,7 +723,7 @@ window.onload = function () {
         <div id="div5" class="divShow">
             <!-- <iframe id="blog2" frameborder="0" src="​https://docs.google.com/document/d/1LMDcIOlIHy4UK2uRATWiRwbga4JcEpHKwk4G80Vyg-w/edit?usp=sharing"></iframe> -->
             <!-- <iframe id="blog2" frameborder="0" src="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"></iframe> -->
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/OSi3X2OLres" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/OSi3X2OLres" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
 
         <div id="div2" class="divShow">
@@ -755,6 +784,7 @@ window.onload = function () {
                         <td>
                             <ul>
                             <li><a href="https://www.facebook.com/groups/tw048911311" target="_blank">精舍FACEBOOK社團</a></li>
+                            <li><a href="https://www.facebook.com/sande04081117/" target="_blank">精舍FACEBOOK粉絲頁</a></li>
                             <li><a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">精舍LINE公告群</a></li>
                             <li><a href="https://www.youtube.com/@bsdv" target="_blank">精舍YOUTUBE</a></li>
                             <li><a href="https://www.youtube.com/@bsdv-1" target="_blank">精舍YOUTUBE-1</a></li>
@@ -779,7 +809,7 @@ window.onload = function () {
         <tr>
             <!-- <div id="btnmula" class="mula"> -->
             <td class="tddown"><button id="btn1" class="btnshow">首頁</button></td>
-            <td class="tddown"><button id="btn5" class="btnshow">最新<br />消息</button></td>
+            <!-- <td class="tddown"><button id="btn5" class="btnshow">最新<br />消息</button></td> -->
             <td class="tddown"><button id="btn7" class="btnshow">算盤</button></td>
             <td class="tddown"><button id="btn2" class="btnshow">念佛<br />計數</button></td>
             <td class="tddown"><button id="btn6" class="btnshow">計數器<br />念佛</button></td>
