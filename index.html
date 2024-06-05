@@ -46,10 +46,12 @@ button:active,textarea:active{border-color: indigo #f3f #f6f indigo;border-width
 /* 浮動 */
 float: left;
 }
-#fblink{line-height: 40pt;}
+#fblink{line-height: 2em;}
 #btnlink1{color: #2b4;}
 #btnlink2{color: dodgerblue;}
 #btnlink4{color: firebrick;}
+/* 去除點標 */
+#btnfirst{list-style-type:none}
 
 #div5 {height: 70vh;width: 100%;background:#ff8;}
 #blog2 {height: 100%;width: 100%;overflow: auto;background-image: url(icons/sd512.png);background-size: 100% 100%;}
@@ -83,7 +85,8 @@ clear: both;
 }
 /* 日期、人名樣式 */
 span{color: darkgreen;}
-font{color: crimson;}
+/* 加大字體 */
+font{color: crimson;font-size: 2em;}
 /* 關於我 */
 #me,#me td{border:1px solid black;font-size: 16pt;color:black;text-align: left;border-spacing:0 0 ;}
 #txt1{width: 1px;height: 1px;border: 0;}
@@ -269,7 +272,9 @@ window.onload = function () {
             alert('已複製你查詢的內容，可以直接到別的APP中「貼上」')
         }
     }
-    var logo = '<span>/三德精舍(埤頭)</span>'
+    // 2024-6-5本知師要求刪除(埤頭)
+    // var logo = '<span>/三德精舍(埤頭)</span>'
+    var logo = '<span>/三德精舍</span>'
 
     // 輸入的佛號數字，導入「瀏覽器本地存儲」，並加上日期，並且顯示在div
     // 記錄頁面有無東西，預設有「備註說明」
@@ -371,7 +376,7 @@ window.onload = function () {
         // } else 
         if (localLast('jsq', '1')) {
             // 只有1筆資料
-            FirstShow = '<p><font>最後記錄<br>' + localLast('jsq', '1') + '</font> ' + '<br>念佛' + localLastNum('jsq') + '聲</p>'
+            FirstShow = '<p>最後記錄<br><font>' + localLast('jsq', '1') + '</font> ' + '<br>念佛' + localLastNum('jsq') + '聲</p>'
         } else {
             // 無資料
             FirstShow = '<p><span>尚未輸入計數器數字</span></p>'
@@ -655,10 +660,13 @@ window.onload = function () {
             <iframe id="blog1" frameborder="0"></iframe>
 
             <div id="fblink">
-                <a href="https://lin.ee/2lwTwQ7"><button id="btnlink1" class="nf">LINE官方帳號</button></a>
-                <a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><button id="btnlink3" class="nf gk">LINE公告群</button></a>
-                <a href="https://www.youtube.com/@ytsdv"><button id="btnlink4" class="nf">YOUTUBE</button></a>
-                <a href="https://www.facebook.com/sdvfb/"><button id="btnlink2" class="nf">FACEBOOK粉絲頁</button></a>
+                <ul id="btnfirst">
+                    <li><a href="https://www.sande.org.tw/"><button id="btnlink5" class="nf">三德精舍網站</button></a></li>
+                    <li><a href="https://lin.ee/2lwTwQ7"><button id="btnlink1" class="nf">LINE官方帳號</button></a></li>
+                    <li><a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><button id="btnlink3" class="nf gk">LINE公告群</button></a></li>
+                    <li><a href="https://www.youtube.com/@ytsdv"><button id="btnlink4" class="nf">YOUTUBE</button></a></li>
+                    <li><a href="https://www.facebook.com/sdvfb/"><button id="btnlink2" class="nf">FACEBOOK粉絲頁</button></a></li>
+                </ul>
             </div>
         </div>
 
@@ -784,11 +792,12 @@ window.onload = function () {
                         <td>社群媒體</td>
                         <td>
                             <ul>
-                                <li><a href="https://lin.ee/2lwTwQ7" target="_blank">精舍LINE官方帳號</a></li>
-                                <li><a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">精舍LINE公告群</a></li>
-                                <li><a href="https://www.youtube.com/@ytsdv" target="_blank">精舍YOUTUBE</a></li>
-                                <li><a href="https://www.youtube.com/@bsdv" target="_blank">精舍YOUTUBE-1</a></li>
-                                <li><a href="https://www.facebook.com/sdvfb/" target="_blank">精舍FACEBOOK粉絲頁</a></li>
+                                <li><a href="https://www.sande.org.tw/" target="_blank">三德精舍網站</a></li>
+                                <li><a href="https://lin.ee/2lwTwQ7" target="_blank">LINE官方帳號</a></li>
+                                <li><a href="https://line.me/ti/g2/d9kondefPW9QyDG2_4H86S8WjC_S0vYHTvigsQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">LINE公告群</a></li>
+                                <li><a href="https://www.youtube.com/@ytsdv" target="_blank">YOUTUBE</a></li>
+                                <li><a href="https://www.youtube.com/@bsdv" target="_blank">YOUTUBE-1</a></li>
+                                <li><a href="https://www.facebook.com/sdvfb/" target="_blank">FACEBOOK粉絲頁</a></li>
                             </ul>
                         </td>
                     </tr>
